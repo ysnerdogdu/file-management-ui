@@ -198,7 +198,7 @@ export default {
 <style>
 
 .fm-component-edit-dialog .el-dialog__header {
-  background-color: #d0d0d0;
+  background-color: #bcc8d2;
   border-bottom: 1px solid #D6E0EA;
 }
 .fm-component-edit-dialog .el-form-item__label {

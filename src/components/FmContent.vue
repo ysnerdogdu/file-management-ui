@@ -68,10 +68,25 @@
         </el-card>
       </el-col>
     </el-row>
+    <el-button
+      type="info"
+      size="large"
+      class="open-command-button"
+      @click="openCommandDialog"
+    >
+      Open Command Area
+    </el-button>
 
     <FmEditDialog
-      :show-dialog.sync="componentEditDialog.shown"
+      :show-dialog.sync="componentEditDialogIsShown"
       :component-data="selectedComponent"
+      @refresh-components="fetchFolderComponents"
+    />
+    <FmCommandDialog
+      :show-dialog.sync="commandDialogIsShown"
+      :folder-components="currentData"
+      @delete-component="deleteComponent"
+      @open-folder="goInsideFolder"
       @refresh-components="fetchFolderComponents"
     />
   </div>
@@ -81,12 +96,14 @@
 import FileDataService from '@/services/FileDataService'
 import FolderDataService from '@/services/FolderDataService'
 import FmEditDialog from '@/components/FmEditDialog'
+import FmCommandDialog from '@/components/FmCommandDialog'
 
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'FmContent',
   components: {
+    FmCommandDialog,
     FmEditDialog,
     // eslint-disable-next-line vue/no-unused-components
     FileDataService,
@@ -99,9 +116,8 @@ export default {
       selectedComponent: null,
       currentData: [],
       currentFolderId: -1,
-      componentEditDialog: {
-        shown: false
-      },
+      componentEditDialogIsShown: false,
+      commandDialogIsShown: false,
       deleteComponentInProgress: false,
       rootComponents: null
     }
@@ -115,6 +131,8 @@ export default {
   },
   methods: {
     goInsideFolder (value) {
+      // eslint-disable-next-line no-debugger
+      debugger
       const simpleFolderData = { id: value.id, name: value.name, parentFolderId: value.parentFolderId }
       this.$store.dispatch('openFolder', simpleFolderData)
     },
@@ -123,7 +141,13 @@ export default {
         return
       }
       this.selectedComponent = value
-      this.componentEditDialog.shown = true
+      this.componentEditDialogIsShown = true
+    },
+    openCommandDialog () {
+      if (this.deleteComponentInProgress) {
+        return
+      }
+      this.commandDialogIsShown = true
     },
     fetchFolderComponents () {
       if (this.loading) {
@@ -143,6 +167,8 @@ export default {
         })
     },
     deleteComponent (value) {
+      // eslint-disable-next-line no-debugger
+      debugger
       this.deleteComponentInProgress = true
 
       let promise
@@ -254,6 +280,15 @@ export default {
 }
 .text-danger:hover {
   color: #ea5252;
+}
+.fm-content .open-command-button {
+  background-color: #313e48;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
 }
 
 </style>

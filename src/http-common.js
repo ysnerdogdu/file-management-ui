@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://simple-server-file-management.herokuapp.com/',
+  baseURL: 'http://localhost:8081/',
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-type': 'application/json'
