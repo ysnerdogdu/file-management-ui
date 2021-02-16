@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-row class="fm-header" >
+      <FmNavbar/>
+    </el-row>
+    <el-row>
+      <el-col :span="6">
+        <FmSidebar/>
+      </el-col>
+      <el-col :span="18">
+        <FmContent/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
+<script>
+import FmNavbar from '@/components/FmNavbar'
+import FmSidebar from '@/components/FmSidebar'
+import FmContent from '@/components/FmContent'
+export default {
+  components: {
+    FmNavbar,
+    FmSidebar,
+    FmContent
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  margin: 0;
+  padding: 0;
 }
 </style>
