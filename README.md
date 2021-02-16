@@ -5,9 +5,16 @@
 yarn
 ```
 
-### Compiles and hot-reloads for development
+### Compile
+```
+yarn install
+```
+
+## Run
 ```
 yarn start
+or
+yarn serve
 ```
 
 # Simple File Management
