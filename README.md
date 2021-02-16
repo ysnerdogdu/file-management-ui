@@ -7,7 +7,7 @@ yarn
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn start
 ```
 
 # Simple File Management
@@ -27,18 +27,12 @@ Responsive file explorer built with [Vue.js](https://vuejs.org) and [Element UI]
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/mobileaction/dashboard-admin-ui.git dashboard-admin-ui
+$ git clone https://github.com/ysnerdogdu/file-management-ui.git
 #
 # go into app's directory and install dependencies:
 $ cd myproject
 $ npm install
 #
-# serve with hot reload at localhost:4011.
-$ npm run dev
-#
-# build for production with minification
-$ npm run build
-#
-# build for production and view the bundle analyzer report.
-$ npm run build --report
+# serve with hot reload at localhost:8080.
+$ npm start
 ```
